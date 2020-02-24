@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author haganicolau
  */
-class Entity implements IEntity 
+class Entity implements IEntity
 {
-    
+
     /**
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
@@ -20,26 +20,28 @@ class Entity implements IEntity
     * @var int
     */
     protected $id;
-    
+
     /**
      * @ORM\Column(name="active", type="boolean")
      */
     protected $active;
-    
-    public function getId() {
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
-    
+
     public function getActive()
     {
         return $this->active;
     }
 
-    public function setActive($active) 
+    public function setActive($active)
     {
         $this->active = $active;
     }

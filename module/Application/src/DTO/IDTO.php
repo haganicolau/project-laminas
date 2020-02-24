@@ -9,13 +9,14 @@ use \Application\Entity\IEntity;
  *
  * @author haganicolau
  */
-Interface IDTO {
-    
+interface IDTO
+{
+
     public function toDTO(IEntity $entity);
-    
+
     public function toEntity($dto);
-    
+
     public function toListDTO(array $collection);
-    
+
     public function toListEntity(array $collection);
 }

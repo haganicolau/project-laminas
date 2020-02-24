@@ -24,19 +24,20 @@ $config = include __DIR__ . '/local.php';
 
 $directory = opendir(__DIR__ . '/../../module/');
 $subDirectory = [];
-while ($arquivo=readdir($directory)) {
-    if($arquivo === '..' || $arquivo === '.')        
+while ($arquivo = readdir($directory)) {
+    if ($arquivo === '..' || $arquivo === '.') {
         continue;
+    }
     array_push($subDirectory, $arquivo);
 }
 
 $paths = [];
-foreach($subDirectory as $module){
+foreach ($subDirectory as $module) {
     array_push($paths, __DIR__ . "/../../module/{$module}/src/Entity");
 }
 
 $drivers = [];
-foreach($subDirectory as $module){
+foreach ($subDirectory as $module) {
         $drivers["{$module}\\Entity"] = 'Doctrine_driver';
 }
 

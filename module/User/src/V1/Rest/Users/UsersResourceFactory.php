@@ -9,11 +9,11 @@ use User\DTO\UserDTO;
 class UsersResourceFactory
 {
     /** @var \Doctrine\ORM\EntityManager */
-    private $entityManager; 
+    private $entityManager;
 
     public function __invoke($services)
     {
-        $this->entityManager = $services->get('doctrine.entitymanager.orm_default');  
+        $this->entityManager = $services->get('doctrine.entitymanager.orm_default');
 
         return new UsersResource(
             $this->entityManager,

@@ -20,21 +20,22 @@ class User extends Entity
      * @ORM\OneToOne(targetEntity="Application\Entity\OAuthUser", mappedBy="user", fetch="EAGER", cascade={"all"})
      */
     private $oauthUser;
-    
+
     /**
      * @ORM\Column(name="first_name", type="string")
      */
     private $firstName;
-    
+
     /**
      * @ORM\Column(name="last_name", type="string")
      */
     private $lastName;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->oauthUser = new OAuthUser();
     }
-    
+
     public function getOauthUser()
     {
         return $this->oauthUser;
@@ -60,12 +61,8 @@ class User extends Entity
         $this->firstName = $firstName;
     }
 
-    public function setLastName($lastName) 
+    public function setLastName($lastName)
     {
         $this->lastName = $lastName;
     }
-
-
-    
 }
-

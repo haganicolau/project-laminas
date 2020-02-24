@@ -19,50 +19,50 @@ class Scope
      * @var int
      */
     private $id;
-       
+
     /**
      * @ORM\Column(name="type", type="string")
      */
     private $type;
-    
+
     /**
      * @ORM\Column(name="scope", type="string")
      */
     private $scope;
-    
+
     /**
      * Many scopes have one client. This is the owning side.
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="scopes")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="client_id")
      */
     private $client;
-    
+
     /**
      * @ORM\Column(name="is_default", type="boolean")
      */
     private $isDefault;
-    
+
     public function getId()
     {
         return $this->id;
     }
 
-    public function getType() 
+    public function getType()
     {
         return $this->type;
     }
 
-    public function getScope() 
+    public function getScope()
     {
         return $this->scope;
     }
 
-    public function getClient() 
+    public function getClient()
     {
         return $this->client;
     }
 
-    public function getIsDefault() 
+    public function getIsDefault()
     {
         return $this->isDefault;
     }
@@ -72,24 +72,23 @@ class Scope
         $this->id = $id;
     }
 
-    public function setType($type) 
+    public function setType($type)
     {
         $this->type = $type;
     }
 
-    public function setScope($scope) 
+    public function setScope($scope)
     {
         $this->scope = $scope;
     }
 
-    public function setClient($client) 
+    public function setClient($client)
     {
         $this->client = $client;
     }
 
-    public function setIsDefault($isDefault) 
+    public function setIsDefault($isDefault)
     {
         $this->isDefault = $isDefault;
     }
-
 }

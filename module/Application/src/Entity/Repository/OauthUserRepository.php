@@ -4,6 +4,7 @@ namespace Application\Entity\Repository;
 use \Doctrine\ORM\EntityRepository;
 use \Doctrine\ORM\NoResultException;
 use \Library\Loghandler\Log;
+
 /**
  * Description of Repository
  *
@@ -14,7 +15,7 @@ class OauthUserRepository extends EntityRepository
 {
     public function getOauthUserByAccessToken($accesToken)
     {
-        try{
+        try {
             $query = $this->_em->createQueryBuilder();
 
             return $query->select('oauth')
@@ -27,18 +28,17 @@ class OauthUserRepository extends EntityRepository
                 ->setParameter('token', $accesToken)
                     ->getQuery()
                     ->getSingleResult();
-        } catch (NoResultException $e){
-           Log::create(
-                Log::INFO, 
-                'Autorização usuário, ' . $e->getMessage(), 
+        } catch (NoResultException $e) {
+            Log::create(
+                Log::INFO,
+                'Autorização usuário, ' . $e->getMessage(),
                 401
             );
-          return null;
-          
-        } catch (\Exception $e){
+            return null;
+        } catch (\Exception $e) {
             Log::create(
-                Log::ERORR, 
-                'Autorização usuário: ' . $e->getMessage(), 
+                Log::ERORR,
+                'Autorização usuário: ' . $e->getMessage(),
                 500
             );
         }

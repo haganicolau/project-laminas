@@ -26,7 +26,7 @@ class OAuthUser implements IEntity
      * @var int
      */
     private $username;
-    
+
     /**
      * @ORM\Column(name="email", type="string")
      */
@@ -37,20 +37,20 @@ class OAuthUser implements IEntity
      * @var string
      */
     private $password;
-    
+
     /**
      * Many features have one product. This is the owning side.
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="users")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="client_id")
      */
     private $client;
-    
+
     /**
      * One product has many features. This is the inverse side.
      * @ORM\OneToMany(targetEntity="Application\Entity\AccessToken", mappedBy="oauthUser")
      */
     private $accessTokens;
-    
+
     /**
      * Um oauthUser para um usuário.
      * @ORM\OneToOne(targetEntity="User\Entity\User", inversedBy="oauthUser", fetch="EAGER", cascade={"all"})
@@ -58,7 +58,7 @@ class OAuthUser implements IEntity
      */
     private $user;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->accessTokens = new ArrayCollection();
         $this->client = new Client();
@@ -76,46 +76,46 @@ class OAuthUser implements IEntity
         return $this;
     }
 
-    public function getEmail() 
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function getClient() 
+    public function getClient()
     {
         return $this->client;
     }
 
-    public function setEmail($email) 
+    public function setEmail($email)
     {
         $this->email = $email;
     }
 
-    public function setClient($client) 
+    public function setClient($client)
     {
         $this->client = $client;
     }
-    
+
     public function getAccessTokens()
     {
         return $this->accessTokens;
     }
 
-    public function setAccessTokens($accessTokens) 
+    public function setAccessTokens($accessTokens)
     {
         $this->accessTokens = $accessTokens;
     }
-    
-    public function getUsername() 
+
+    public function getUsername()
     {
         return $this->username;
     }
 
-    public function getPassword() 
+    public function getPassword()
     {
         return $this->password;
     }
-    
+
     public function getUser()
     {
         return $this->user;
@@ -125,7 +125,4 @@ class OAuthUser implements IEntity
     {
         $this->user = $user;
     }
-
-
 }
-

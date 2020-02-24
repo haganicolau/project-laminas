@@ -7,7 +7,7 @@ namespace Application\Entity;
  *
  * @author haganicolau
  */
-Interface IEntity 
+interface IEntity
 {
-    
+
 }

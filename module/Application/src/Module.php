@@ -21,10 +21,10 @@ class Module
     {
         $eventManager = $e->getApplication()->getEventManager();
         $serviceManager = $e->getApplication()->getServiceManager();
-        
+
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-    
+
         $eventManager->attach(
             MvcAuthEvent::EVENT_AUTHORIZATION,
             new AuthorizationListener(
@@ -33,9 +33,6 @@ class Module
             ),
             100
         );
-        
-        
-               
     }
 
 

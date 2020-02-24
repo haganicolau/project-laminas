@@ -15,72 +15,72 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table(name="oauth_access_tokens")
  */
-class AccessToken 
+class AccessToken
 {
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(name="access_token", type="string")
      * @var string
      */
     private $accessToken;
-    
+
     /**
      * Many features have one product. This is the owning side.
      * @ORM\ManyToOne(targetEntity="Application\Entity\OAuthUser", inversedBy="accessTokens")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="username")
      */
     private $oauthUser;
-    
+
     /**
      * Many features have one product. This is the owning side.
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="accessTokens")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="client_id")
      */
     private $client;
-    
+
     /**
      * @ORM\Column(name="expires", type="datetime")
      * @var string
      */
     private $expires;
-    
-    public function getAccessToken() 
+
+    public function getAccessToken()
     {
         return $this->accessToken;
     }
 
-    public function getOauthUser() 
+    public function getOauthUser()
     {
         return $this->oauthUser;
     }
 
-    public function getClient() 
+    public function getClient()
     {
         return $this->client;
     }
 
-    public function getExpires() 
+    public function getExpires()
     {
         return $this->expires;
     }
 
-    public function setAccessToken($accessToken) 
+    public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
     }
 
-    public function setOauthUser($oauthUser) 
+    public function setOauthUser($oauthUser)
     {
         $this->oauthUser = $oauthUser;
     }
 
-    public function setClient($client) 
+    public function setClient($client)
     {
         $this->client = $client;
     }
 
-    public function setExpires($expires) 
+    public function setExpires($expires)
     {
         $this->expires = $expires;
     }

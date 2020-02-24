@@ -11,5 +11,5 @@ use \Doctrine\ORM\EntityRepository;
  */
 class ClientRespository extends EntityRepository
 {
-    
+
 }

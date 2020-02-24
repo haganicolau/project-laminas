@@ -17,13 +17,13 @@ class UsersResource extends AbstractResourceListener
     private $clientOauthRepository;
     private $oauthUserDto;
     private $oathUserRepository;
-    
+
     public function __construct(
         EntityManager $entityManager,
         OauthUserRepository $oathUserRepository,
         ClientRespository $clientOauthRepository,
         UserDTO $oauthUserDto
-    ){    
+    ) {
         $this->entityManager = $entityManager;
         $this->oathUserRepository = $oathUserRepository;
         $this->clientOauthRepository = $clientOauthRepository;
@@ -38,52 +38,50 @@ class UsersResource extends AbstractResourceListener
      */
     public function create($data)
     {
-        try{
-            
+        try {
             $client = $this->clientOauthRepository->findOneBy(
                 ['clientID' => $data->client_id]
             );
-            
+
             $user = $this->oathUserRepository->findOneBy(
-                    ['username' => $data->username]
+                ['username' => $data->username]
             );
-            if(!empty($user)){
+            if (! empty($user)) {
                 throw new ExceptionApigility(
                     "Usename alredy registred",
                     400
                 );
             }
-            
-            if(!Util::validateEmail($data->email)) {
+
+            if (! Util::validateEmail($data->email)) {
                 throw new ExceptionApigility(
                     "Invalid email",
                     400
                 );
-            } 
-            
+            }
+
             $user = $this->oathUserRepository->findOneBy(
-                    ['email' => $data->email]
+                ['email' => $data->email]
             );
-            if(!empty($user)){
+            if (! empty($user)) {
                 throw new ExceptionApigility(
                     "Email alredy registred",
                     400
                 );
             }
-            
+
             Util::validateStrengthPass($data->password);
-            
+
             $data->client = $client;
 
             /** @var \User\Entity\User */
             $user = $this->oauthUserDto->toEntity($data);
-            
+
             $this->entityManager->persist($user->getOauthUser());
             $this->entityManager->flush();
-
-        } catch (ExceptionApigility $ex){
+        } catch (ExceptionApigility $ex) {
             return new ApiProblem(
-                $ex->getcode(), 
+                $ex->getcode(),
                 $ex->getMessage()
             );
         }

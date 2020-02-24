@@ -11,9 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="\User\Entity\Repository\TesteRepository")
  * @ORM\Table(name="teste")
  */
-class Teste  
+class Teste
 {
-    
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -21,25 +21,29 @@ class Teste
      * @var int
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(name="texto", type="string")
      */
     protected $texto;
-    
-    public function getId() {
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
-    
-    public function getTexto() {
+
+    public function getTexto()
+    {
         return $this->texto;
     }
 
-    public function setTexto($texto) {
+    public function setTexto($texto)
+    {
         $this->texto = $texto;
     }
 }

@@ -15,12 +15,12 @@ use \User\Entity\User;
  **/
 class UserDTO
 {
-    
+
      /**
      * Convert objeto database em array para view
      *
      * @param  User $user
-     * 
+     *
      * @return array $dto
      */
     public function toDTO(User $entity)
@@ -37,14 +37,14 @@ class UserDTO
      * Convert objeto data do view para Entity\User
      *
      * @param  data
-     * 
+     *
      * @return Entity\User $user
      */
-    public function toEntity($data) 
+    public function toEntity($data)
     {
         $user = new User();
         $oauth = new OAuthUser();
-        
+
         $oauth->setClient($data->client);
         $oauth->setEmail($data->email);
         $oauth->setPassword($data->password);
@@ -57,15 +57,11 @@ class UserDTO
         return $user;
     }
 
-    public function toListDTO(array $collection) 
+    public function toListDTO(array $collection)
     {
-        
     }
 
-    public function toListEntity(array $collection) 
+    public function toListEntity(array $collection)
     {
-        
     }
-
 }
-
