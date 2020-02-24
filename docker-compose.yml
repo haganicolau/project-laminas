@@ -1,0 +1,53 @@
+version: "3.5"
+services:
+  apigility:
+    hostname: 'apigility.com.br'
+    container_name: php_apigility
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    ports:
+     - "80:80"
+    env_file: 
+      - .docker/environments/api_serve.env
+      - .docker/environments/database.env
+    expose:
+        - "9000"
+    networks:
+      vpcbr2: 
+        ipv4_address: 172.16.240.2
+    volumes:
+     - .:/var/www
+     - .docker/logs/apache:/var/log/apache2
+     - .docker/logs/usr:/usr/local/var/log
+     - .docker/logs/xdebug:/tmp/xdebug.log
+
+  db_mysql:
+    container_name: mysql_apigility
+    image: mysql:5.7
+    volumes:
+      - .docker/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    env_file: .docker/environments/database.env
+    networks:
+      vpcbr2: 
+        ipv4_address: 172.16.240.3
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - db_mysql
+    ports:
+      - 88:80
+    networks:
+      vpcbr2: 
+        ipv4_address: 172.16.240.4
+
+networks:
+  vpcbr2:
+   ipam:
+     driver: default
+     config:
+       - subnet: '172.16.240.0/24'
+
