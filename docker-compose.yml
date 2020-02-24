@@ -21,12 +21,13 @@ services:
      - .docker/logs/apache:/var/log/apache2
      - .docker/logs/usr:/usr/local/var/log
      - .docker/logs/xdebug:/tmp/xdebug.log
-
+  
   db_mysql:
     container_name: mysql_apigility
     image: mysql:5.7
     volumes:
       - .docker/data:/var/lib/mysql
+      - .docker/data/dump:/home/dump
     ports:
       - "3306:3306"
     env_file: .docker/environments/database.env
